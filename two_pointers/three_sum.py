@@ -36,19 +36,31 @@ class Solution:
         target = 0
         triplets = []
         nums = sorted(nums)
-
+        
         for index, num in enumerate(nums):
+            if index != 0 and nums[index] == nums[index - 1]:
+                continue
+
             low = index + 1
             high = len(nums) - 1
+            
             while low < high:
                 local_sum = num + nums[low] + nums[high]
                 
                 if local_sum == target:
                     triplet = [num, nums[low], nums[high]]
                     triplets.append(triplet)
-                    break
+
+                    low += 1
+                    high -= 1
+                    while nums[low - 1] == nums[low]:
+                        low += 1
+                    while nums[high + 1] == nums[high]:
+                        high -= 1
+                
                 elif local_sum < target:
                     low += 1
+                
                 else:
                     high -= 1
 
@@ -56,8 +68,8 @@ class Solution:
 
 
 nums = [-1,0,1,2,-1,-4]
-nums = [0,0,0]
-nums = [-2,0,0,2]
-nums = [-5,-4,-3]
+# nums = [0,0,0]
+# nums = [-2,0,0,2]
+# nums = [-5,-4,-3]
 sol_obj = Solution()
 print(sol_obj.three_sum(nums))
