@@ -25,6 +25,19 @@ class LinkList:
             self.append(val)
         return 
     
+    def create_cycle(self, pos):
+        temp = self.head
+        i = 0
+        cycle_start = temp
+        while temp.next is not None:
+            if i == pos:
+                cycle_start = temp
+            temp = temp.next
+            i += 1
+
+        temp.next = cycle_start
+        return
+    
     def printlist(self):
         temp = self.head
 
