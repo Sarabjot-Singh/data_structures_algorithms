@@ -25,7 +25,7 @@ class Graph:
         return graph
 
     def build_adjancency_list(self):
-        graph = [[] for _ in range(n)]
+        graph = [[] for _ in range(self.n)]
         
         for edge in self.edges:
             source = edge[0]
